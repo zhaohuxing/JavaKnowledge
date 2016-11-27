@@ -1,0 +1,12 @@
+Data-Structure/list/build
+Data-Structure/list/.gradle
+JavaSE/TCPClient/build
+JavaSE/TCPServer/build
+JavaSE/UDPClient/build
+JavaSE/UDPServer/build
+JavaSE/TCPClient/.gradle
+JavaSE/TCPServer/.gradle
+JavaSE/UDPClient/.gradle
+JavaSE/UDPServer/.gradle
+*.swp
+
