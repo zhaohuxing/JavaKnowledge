@@ -6,3 +6,6 @@
 
 ####数据结构
 - [链表／栈／队列](http://www.jianshu.com/p/d798d8d8ffc6)  **代码位置：Data-Structure/list**
+
+####Java基础
+- [Java 异常](http://www.jianshu.com/p/bd9f715afd9f) 

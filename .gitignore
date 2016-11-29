@@ -8,5 +8,9 @@ JavaSE/TCPClient/.gradle
 JavaSE/TCPServer/.gradle
 JavaSE/UDPClient/.gradle
 JavaSE/UDPServer/.gradle
+JavaSE/exception/build
+JavaSE/exception/.gradle
+Data-Structure/tree/build
+Data-Structure/tree/.gradle
 *.swp
 
