@@ -7,6 +7,7 @@ import com.sprint.bufferedStreams.*;
 import com.sprint.scanner.*;
 import com.sprint.test.*;
 import com.sprint.dataStreams.*;
+import com.sprint.file.*;
 import java.io.*;
 import java.util.*;
 import com.sprint.io.*;
@@ -74,7 +75,16 @@ public class Main {
 		
 		Picture.uploadPicture("signupError.jpg", "xxx.jpg");
 		
-		DataStreamsDemo.writeData("dataStreams.txt");
-		DataStreamsDemo.readData("dataStreams.txt");
+//		DataStreamsDemo.writeData("dataStreams.txt");
+//		DataStreamsDemo.readData("dataStreams.txt");
+		DirList.printDirList("/home/sprint/js/code/c", ".*\\.java");	
+		System.out.println("Directory.测试");
+		System.out.println(Directory.walk("."));
+		new ProcessFiles(new ProcessFiles.Strategy() {
+			public void process(File file) {
+				System.out.println(file);
+			}
+		}, "java").start();
 	}
+
 }
