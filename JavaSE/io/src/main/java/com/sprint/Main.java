@@ -8,6 +8,7 @@ import com.sprint.scanner.*;
 import com.sprint.test.*;
 import com.sprint.dataStreams.*;
 import com.sprint.file.*;
+import com.sprint.objectStream.*;
 import java.io.*;
 import java.util.*;
 import com.sprint.io.*;
@@ -85,6 +86,12 @@ public class Main {
 				System.out.println(file);
 			}
 		}, "java").start();
+		
+
+		ObjectStreamMain.testObjectStream();
+		ExternalDemo.testExternal();
+		TransientDemo.testTransient();
+		LoginTransientExternal.testLoginTransientExternal();
 	}
 
 }
