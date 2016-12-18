@@ -1,5 +1,6 @@
 package com.sprint;
 
+import com.sprint.nio.*;
 import com.sprint.domain.*;
 import com.sprint.byteStreams.*;
 import com.sprint.characterStreams.*;
@@ -91,7 +92,10 @@ public class Main {
 		ObjectStreamMain.testObjectStream();
 		ExternalDemo.testExternal();
 		TransientDemo.testTransient();
-		LoginTransientExternal.testLoginTransientExternal();
+		MappedIO.print();
+		System.out.println(BufferedInputFile.read("employee.txt"));
+		StringReaderFile.read("employee.txt");
+		DataInputStreamFile.read("lines.txt");
 	}
 
 }
