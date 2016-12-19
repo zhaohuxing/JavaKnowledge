@@ -96,6 +96,10 @@ public class Main {
 		System.out.println(BufferedInputFile.read("employee.txt"));
 		StringReaderFile.read("employee.txt");
 		DataInputStreamFile.read("lines.txt");
+		BasicFileOutput.printf("employee.txt", "basicPrint.txt");
+		StoringAndRecoveringData.printf("storeAndRecover.txt");
+
 	}
+
 
 }
