@@ -14,7 +14,7 @@ import java.io.*;
 import java.util.*;
 import com.sprint.io.*;
 import java.nio.file.*;
-
+import com.sprint.nio.buffer.*;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
@@ -99,6 +99,8 @@ public class Main {
 		BasicFileOutput.printf("employee.txt", "basicPrint.txt");
 		StoringAndRecoveringData.printf("storeAndRecover.txt");
 
+		//NIO 中关于ByteBuffer示例
+		NioBufferDemo.testByteBuffer("byteBuffer.txt");		
 	}
 
 
