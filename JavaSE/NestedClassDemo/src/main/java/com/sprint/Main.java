@@ -1,5 +1,7 @@
 package com.sprint;
 
+import com.sprint.domain.*;
+import com.sprint.interfaces.*;
 import com.sprint.nested.*;
 import com.sprint.nested.statics.*;
 public class Main {
@@ -25,5 +27,29 @@ public class Main {
 		InnerClassDemo outer = new InnerClassDemo(); //　Inner Class 隐藏保留对外围类对象的引用，所以必须实例化外围类才能实例化内部类
 		InnerClassDemo.InnerClass innerObj = outer.new InnerClass(); 
 		innerObj.show();
+
+		//内部类与向上转型
+		InnerClassDemo1 outer1 = new InnerClassDemo1();
+		TestImp testImp = outer1.testImp();
+		testImp.test();
+		
+		//局部内部类
+		InnerClassDemo2.testDomain().test();		
+		
+		//任意作用域的内部类
+		InnerClassDemo2.defIfScopeInnerClass(true);
+		InnerClassDemo2.defIfScopeInnerClass(false);
+		
+		//匿名内部类
+		System.out.println(InnerClassDemo3.getUser("x_zhaohu"));
+		InnerClassDemo3.getTestImp("163.com").test();
+		
+		//利用内部类实现多重继承
+		InnerClassDemo4 icd = new InnerClassDemo4(); 
+		testD(icd);
+		testE(icd.makeE());
 	}
+
+	public static void testD(D d) {}
+	public static void testE(E e) {} 
 }
