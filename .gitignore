@@ -10,6 +10,7 @@ JavaSE/BuilderDemo/build
 JavaSE/NestedClassDemo/build
 JavaSE/SelectorDemoClient/build
 JavaSE/SelectorDemoServer/build
+JavaSE/enum/build
 Data-Structure/list/.gradle
 Data-Structure/tree/.gradle
 JavaSE/TCPClient/.gradle
@@ -22,5 +23,6 @@ JavaSE/BuilderDemo/.gradle
 JavaSE/NestedClassDemo/.gradle
 JavaSE/SelectorDemoClient/.gradle
 JavaSE/SelectorDemoServer/.gradle
+JavaSE/enum/.gradle
 *.swp
 
