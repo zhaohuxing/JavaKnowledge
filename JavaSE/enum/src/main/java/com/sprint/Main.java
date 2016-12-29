@@ -40,5 +40,18 @@ public class Main {
 
 		//EnumSet集合
 		EnumSets.testEnumSet();
+
+		//EnumMap集合
+		EnumMaps.testEnumMap();
+		
+		//常量栗子
+		CarWash carWash = new CarWash();
+		System.out.println(carWash);
+		carWash.washCar();
+		carWash.add(CarWash.Cycle.BASICWASH);
+		carWash.add(CarWash.Cycle.BASICWASH);// 重复忽略
+		System.out.println(carWash);
+		carWash.washCar();
+
 	}
 }
