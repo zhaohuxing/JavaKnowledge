@@ -53,5 +53,11 @@ public class Main {
 		System.out.println(carWash);
 		carWash.washCar();
 
+		//使用enum的职责链
+		for (Mail mail : Mail.generator(10)) {
+			System.out.print(mail.details());	
+			PostOffice.handle(mail);
+			System.out.println("******************");
+		}
 	}
 }
