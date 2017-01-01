@@ -5,7 +5,7 @@ import com.sprint.util.sets.*;
 import com.sprint.util.queues.*;
 import com.sprint.util.maps.*;
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		/*list set queue 三者实现了Collection,而map中引用了Collection*/	
 		/*set的操作*/
 		TypesForSets.test(new HashSet<HashType>(), HashType.class);		
@@ -54,5 +54,8 @@ public class Main {
 		}
 		System.out.println(map);
 		System.out.println(map.get("ocean"));
+		SpringDetector.detectSpring(Groundhog.class);
+		System.out.println("====================");
+		SpringDetector.detectSpring1();
 	}
 }
