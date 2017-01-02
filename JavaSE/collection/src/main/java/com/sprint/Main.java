@@ -57,5 +57,59 @@ public class Main {
 		SpringDetector.detectSpring(Groundhog.class);
 		System.out.println("====================");
 		SpringDetector.detectSpring1();
+		
+		//测试用ArrayList写的SlowMap
+		SlowMap<String, String> sm = new SlowMap<String, String>();
+		for (int i = 1; i < 10; i++) {
+			sm.put("keys"+i, "values"+i);
+		}
+		System.out.println(sm);
+		Iterator iterator = sm.entrySet().iterator();
+		Map.Entry element = (Map.Entry)iterator.next();
+		System.out.println(element.getValue());
+		/*遍历Map的方法
+		 *	Map<String, String> map = new HashMap<String, String>();
+		 *	1. Iterator iterator  = map.keySet();
+		 *	while (iterator.hasNext()) {
+		 *		String key = (String)iterator.next();
+		 *		String value = (String)map.get(key);
+		 * }
+		 *
+		 * 2. Iterator iterator = map.entrySet().iterator();
+		 * while (iterator.hasNext()) {
+		 * 		Map.Entry element = iterator.next();
+		 * 		String key = (String)element.getKey();
+		 * 		String value = (String)element.getValue();
+		 * }
+		 *
+		 * */
+		System.out.println("===========================");	
+		//模拟通过计算散列码获取key索引，获取value的
+		SimpleHashMap<String, String> shm = new SimpleHashMap<String, String>();
+		for (int i = 1; i < 10; i++) {
+			shm.put("keys"+i, "values"+i);
+		}
+		System.out.println(shm);
+		Iterator iterator1 = shm.entrySet().iterator();
+		Map.Entry element1 = (Map.Entry)iterator1.next();
+		System.out.println(element1.getValue());
+
+		//测试String的hashcode();
+		String str = "hello";
+		String str1 = new String("hello");
+		System.out.println("String中如果内容一样，将指向同一块内存" + (str.hashCode() == str1.hashCode()));
+			
+		//遵循重写hashCode()的规范的栗子
+		Map<CountedString, Integer> mapCS = new HashMap<CountedString, Integer>(); 
+		CountedString[] cs = new CountedString[5];
+		for (int i = 0; i < cs.length; i++) {
+			cs[i] = new CountedString("hi");
+			mapCS.put(cs[i], i);
+		}
+		System.out.println(mapCS);
+		for (CountedString csString : cs) {
+			System.out.println("Looking up " + csString);
+			System.out.println(mapCS.get(csString));
+		}
 	}
 }
