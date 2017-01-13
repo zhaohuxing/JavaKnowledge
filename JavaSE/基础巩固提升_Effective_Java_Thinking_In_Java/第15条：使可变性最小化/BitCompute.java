@@ -15,26 +15,27 @@ public class BitCompute {
 		System.out.println("1^0 = " + (1^0));
 		System.out.println("0^1 = " + (0^1));
 		System.out.println("0^0 = " + (0^0));
-		User u1 = new User("小明");
-		User u2 = new User();
-		if (u1.getName() != null || u2.getName() != null) {
-			System.out.println("u1.getName() != null || u2.getName() != null");
-		}
-		if (u1.getName() != null | u2.getName() != null) {
-			System.out.println("u1.getName() != null | u2.getName() != null");
+			
+		if (21 != 21 && (100 /0 == 0)) {
+			System.out.println("&&运算没有问题");
+		} else {
+			System.out.println("&&运算有问题");
 		}
 
-	}
-}
+		if (21 == 21 || (100 / 0 == 0)) {
+			System.out.println("||运算没有问题");
+		} else {
+			System.out.println("||运算有问题");
+		}
+		
+		/* &&与|| 只要前者满足情况，就不在检测，　&与|都需要检测的*/
+		if (21 != 21 & (100 / 0) == 0) { // ArithmeticException
+			//...
+		}
 
-class User {
-	private String name; //共有类中访问方法而非公有域
-
-	public User() {} 
-	public User(String name) {
-		this.name = name;
-	} 
-	public String getName() {
-		return name;
+		
+		if (21 == 21 | (100 / 0 == 0)) { // ArithmeticException
+			//...
+		}
 	}
 }
