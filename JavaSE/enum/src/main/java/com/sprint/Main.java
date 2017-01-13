@@ -59,5 +59,8 @@ public class Main {
 			PostOffice.handle(mail);
 			System.out.println("******************");
 		}
+
+		System.out.println("测试当输出一个实例时，调用几次构造函数:");
+		System.out.println(AccountType.FIXED);
 	}
 }
