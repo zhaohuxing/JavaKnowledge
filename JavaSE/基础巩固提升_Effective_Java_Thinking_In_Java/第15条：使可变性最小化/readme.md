@@ -83,5 +83,15 @@ public static final Complex I = new Complex(0, 1);
 注意：有关无符号右移溢出问题，导致精度损失，结果不一致的情况，使用时考虑是否发生溢出，有关理解请看URShift.java。
 
 ###final关键字
-fianl修饰域：一个既是static又是final的域只占用一段不可改变的存储空间。被static fianl修饰的基本类型，属于编译期常量命名需要大写。
-然而static fianl修饰的域与fianl修饰的域的区别是：被static fianl修饰的域在类加载时就被初始化；被fianl修饰的类在运行时才被初始化。被final修饰的非基本类型引用，其引用不可更改，但是自身信息可以更改。
+####final修饰域
+一个既是static又是final的域只占用一段不可改变的存储空间。被static fianl修饰的基本类型，属于编译期常量命名需要大写。
+然而static fianl修饰的域与fianl修饰的域的区别是：被static fianl修饰的域在类加载时就被初始化；被final修饰的类在运行时才被初始化。被final修饰的非基本类型引用，其引用不可更改，但是自身信息可以更改。
+无论是空白的final还是非空白的，都要保证在使用前保证初始化，所以必须在域的定义处或者每个构造器中用表达式对final进行赋值。
+final参数意味着无法在方法中更改参数引用所指向的对象,详情请查看FinalDemo.java和BlankFinal.java。
+
+####final修饰方法
+使用final修饰方法的两个原因，一是：把方法锁定，防止任何继承类修改它的含义。二是：出于效率问题(过去出于对虚拟机的优化，在1.5往后，要明确禁止覆盖时，才用final修饰)
+被private修饰的方法，其实隐式的被private final修饰。
+
+####final修饰类
+被final修饰的类不能被继承，即其方法不能被覆盖。
