@@ -10,3 +10,6 @@
 ####Java基础
 - [Java 异常](http://www.jianshu.com/p/bd9f715afd9f) 
 - [Java IO](http://www.jianshu.com/p/79a10fbae737) 
+
+####设计模式
+- [UML基本表示方法](http://www.jianshu.com/p/3f5df04b2288)
