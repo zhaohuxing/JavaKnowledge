@@ -102,7 +102,7 @@ Spring中代理方式采用策略模式的实现：
 ![spring中代理方式.jpg](http://upload-images.jianshu.io/upload_images/2031765-2499d88b51a15ab6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 这里Stratery是AopProxy接口，CglibAopProxy和JdkDynamicAopProxy是策略的具体实现(ConcreteStrategy),ProxyFactoryBean相当于Context.
-不翻阅源码总觉缺点什么，但是翻阅后是一脸的懵逼啊，不过加深理解了类与类之间的关系。随手敲了点源码，可以看看[SpringAop代理伪代码]()
+不翻阅源码总觉缺点什么，但是翻阅后是一脸的懵逼啊，不过加深理解了类与类之间的关系。随手敲了点源码，可以看看[SpringAop代理伪代码](https://github.com/zhaohuXing/JavaKnowledge/tree/master/JavaSE/%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E6%8F%90%E5%8D%87_Effective_Java_Thinking_In_Java/%E7%AC%AC21%E6%9D%A1%EF%BC%9A%E7%94%A8%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E8%A1%A8%E7%A4%BA%E7%AD%96%E7%95%A5/SpringAop)
 
 ####怎么用函数对象表示策略？
 通常我们使用接口来表示函数对象，栗子：java.util.Comparator. Comparator可以表示一种策略，通过实现接口来达到的策略具体实现的目的。
@@ -114,7 +114,27 @@ public interface Comparator<T> {
     //...
 }
 ```
-通常我们对只使用一次的具体策略通过匿名类来声明和实例化
+通常我们对只使用一次的具体策略通过匿名类来声明和实例化，栗子如下：
+```
+//使用Comparator这种排序规则，将stringArray中的进行排序。
+Arrays.sort(stringArray, new Comparator() {
+    public int compare(String s1, String s2) {
+        return s1.length() - s2.length();
+    }
+});
+```
+若重复使用，它的类通常就要被实现为私有的静态成员类，并通过公有的静态final域被导出，其类型为该策略接口。栗子如下：
+```
+class Host {
+    private static class StrLenCmp implements Comparator<String>, Serializable {
+        public int compare(String s1, String s2) {
+            return s1.length() - s2.length();
+        }
+    }
+
+    public static final Comparator<String> STRING_LENGTH_COMPARATOR = new StrLenCmp();
+}
+```
 ###牵引出的基础知识
-####策略模式
-####单例模式
+####策略模式（如上）
+
