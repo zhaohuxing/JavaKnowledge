@@ -92,7 +92,29 @@ public class RoadTest {
 ```
 Car相当于Strategy, CarOfxxx相当于ConcreteStrategy, RoadTest相当于Context
 
+Spring中代理方式采用策略模式的实现：
+>spring中AOP有两种代理方式：JDK动态代理和CGLIB代理,结构图如下：
+
+
+
+
+
+![spring中代理方式.jpg](http://upload-images.jianshu.io/upload_images/2031765-2499d88b51a15ab6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+这里Stratery是AopProxy接口，CglibAopProxy和JdkDynamicAopProxy是策略的具体实现(ConcreteStrategy),ProxyFactoryBean相当于Context.
+不翻阅源码总觉缺点什么，但是翻阅后是一脸的懵逼啊，不过加深理解了类与类之间的关系。随手敲了点源码，可以看看[SpringAop代理伪代码]()
+
 ####怎么用函数对象表示策略？
+通常我们使用接口来表示函数对象，栗子：java.util.Comparator. Comparator可以表示一种策略，通过实现接口来达到的策略具体实现的目的。
+```
+//这就是用函数对象表示策略
+//java.util.Comparator中的一部分
+public interface Comparator<T> {
+    public int compare(T t1, T t2);
+    //...
+}
+```
+通常我们对只使用一次的具体策略通过匿名类来声明和实例化
 ###牵引出的基础知识
 ####策略模式
 ####单例模式
