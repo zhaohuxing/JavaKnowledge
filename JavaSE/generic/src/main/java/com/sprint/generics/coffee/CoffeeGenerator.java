@@ -25,7 +25,6 @@ public class CoffeeGenerator implements Generator<Coffee>, Iterable<Coffee> {
 		}
 	}
 
-	@Override
 	public Iterator<Coffee> iterator() {
 		return new CoffeeIterator();
 	}
