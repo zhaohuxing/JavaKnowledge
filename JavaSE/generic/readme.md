@@ -44,7 +44,7 @@ public class Test {
 ###适配器模式
 适配器模式,将一个类的接口转换成客户希望的另外一个接口.Adapter模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作．
 ![适配器模式的类结构.jpg](http://upload-images.jianshu.io/upload_images/2031765-51495ff943d094e5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-Target：所要转换的所期待的接口 <br> 
+<br>Target：所要转换的所期待的接口 <br> 
 Adaptee：需要适配的类  <br>
 Adapter：将源接口适配成目标接口，继承源接口，实现目标接口． <br>
 
