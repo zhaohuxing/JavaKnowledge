@@ -9,7 +9,7 @@ public class HashSetDemo {
 		System.out.println(set);
 		Iterator iter = set.iterator();
 		while (iter.hasNext()) {
-		 System.out.print(((int)iter.next() - (1 << 16)) +" ");
+			 System.out.print(((int)iter.next() - (1 << 16)) +" ");
 		}
 	}
 }

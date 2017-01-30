@@ -1,7 +1,9 @@
 package com.sprint;
 import com.sprint.generics.coffee.*;
 import com.sprint.generics.*;
+import java.util.Iterator;
 public class Main {
+
 	public static void main(String[] args) {
 		/*有关coffee的Generics实现*/
 		CoffeeGenerator gen = new CoffeeGenerator();
@@ -18,6 +20,15 @@ public class Main {
 		Fibonacci fib = new Fibonacci();
 		for (int i = 0; i < 6; i++) {
 			System.out.println(fib.next());
+		}
+
+		//通过适配器完成的Fibonacci，并测试Iterator
+		System.out.println("IterableFibonacci================");
+		IterableFibonacci ifi = new IterableFibonacci(6);
+		Iterator iter = ifi.iterator();
+		//Iterator遍历
+		while (iter.hasNext()) {
+			System.out.println(iter.next());
 		}
 	}
 }
