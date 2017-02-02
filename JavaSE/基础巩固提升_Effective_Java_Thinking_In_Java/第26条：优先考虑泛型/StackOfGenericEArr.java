@@ -1,14 +1,13 @@
 import java.util.EmptyStackException;
 import java.util.Arrays;
-
-public class StackOfGeneric<E> {
-	private E[] elements;
+public class StackOfGenericEArr<E> {
+	private Object[] elements;
 	private int size = 0;
 	private static final int DEFAULT_INITIAL_CAPACITY = 16;
 
 	@SuppressWarnings("unchecked")
-	public StackOfGeneric() {
-		elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];
+	public StackOfGenericEArr() {
+		elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY]; 
 	}
 
 	public void push(E e) {
@@ -25,18 +24,18 @@ public class StackOfGeneric<E> {
 	public E pop() {
 		if (size == 0)
 			throw new EmptyStackException();
-		E e = elements[--size];
+		@SuppressWarnings("unchecked")	E result = (E)elements[--size];
 		elements[size] = null;
-		return e;
+		return result;
 	}
-
+	
 	public boolean isEmpty() {
 		return size == 0;
 	}
 
 	public static void main(String[] args) {
-		StackOfGeneric<Integer> sog = new StackOfGeneric<Integer>();
-		sog.push(3);
-		System.out.println(sog.pop());
+		StackOfGenericEArr<Integer> sogea = new StackOfGenericEArr<Integer>();
+		sogea.push(2);
+		System.out.println(sogea.pop());
 	}
 }
