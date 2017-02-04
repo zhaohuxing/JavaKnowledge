@@ -1,0 +1,37 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url "http://repo.spring.io/snapshot" }
+		maven { url "http://repo.spring.io/milestone" }
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT")
+	}
+}
+
+apply plugin: 'java'
+//apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
+jar {
+	baseName = "TestOfHuitui"
+	version = "0.1.0"
+}
+
+
+repositories {
+	mavenCentral()
+	maven { url "http://repo.spring.io/snapshot" }
+	maven { url "http://repo.spring.io/milestone" } 
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-devtools'
+	compile 'com.zaxxer:HikariCP:2.3.+'
+    compile 'mysql:mysql-connector-java:5.1.38' 
+    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
+	compile 'net.sourceforge.jexcelapi:jxl:2.6.12'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	testCompile("org.springframework.boot:spring-boot-starter-test");
+}

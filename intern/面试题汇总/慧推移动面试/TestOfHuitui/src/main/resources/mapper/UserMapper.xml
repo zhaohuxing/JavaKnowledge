@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sprint.models.dao.UserDao">
+	<select id="findAll" resultType="com.sprint.models.domain.User">
+        select * from User 
+    </select>	
+
+	<insert id="insertUser" >
+		insert into User (id, name, address, birth, sex)values(#{id}, #{name}, #{address}, #{birth}, #{sex})
+	</insert>
+</mapper>
+
