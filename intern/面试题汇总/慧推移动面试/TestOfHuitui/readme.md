@@ -13,5 +13,32 @@ create table User (
 	sex varchar(2) not null
 )ENGINE=INNODB DEFAULT CHARSET UTF8;
 ```
-易溥咸 福建省 10/26/1966
-insert into User (id, name, address, birth, sex)values(1000, "易溥咸", "福建省", "10/26/1966", "男");
+- Product
+```
+create table Product (
+	id int(11) not null auto_increment primary key,
+	create_time timestamp not null default current_timestamp,
+	update_time timestamp not null default current_timestamp on update current_timestamp,
+	product_name varchar(128) not null,
+	product_type varchar(64) not null,
+	product_price double  not null,
+	product_unit varchar(32) not null
+)engine=innodb default charset utf8;
+```
+
+- Sale
+```
+create table Sale (
+	user_id int(11) not	null,
+	product_id int(11) not null,
+	create_time timestamp not null default current_timestamp,
+	update_time timestamp not null default current_timestamp on update current_timestamp,
+	sale_date varchar(64) not null,
+	sale_price double not null,
+	sale_number double not null,
+	foreign key(user_id) references User(id),
+	foreign key(product_id) references Product(id),
+	primayr key(user_id, product_id)
+)engine=innodb default charset utf8;
+```
+
