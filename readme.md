@@ -8,7 +8,7 @@
 - [链表／栈／队列](http://www.jianshu.com/p/d798d8d8ffc6)  **代码位置：Data-Structure/list**
 
 ####Java基础
-- [Java面试常考知识点]()
+- [Java面试常考知识点](https://github.com/zhaohuXing/JavaKnowledge/tree/master/intern/java/%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%80%83%E7%9F%A5%E8%AF%86%E7%82%B9)
 - [Java 异常](http://www.jianshu.com/p/bd9f715afd9f) 
 - [Java IO](http://www.jianshu.com/p/79a10fbae737) 
 
