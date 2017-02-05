@@ -38,7 +38,6 @@ create table Sale (
 	sale_number double not null,
 	foreign key(user_id) references User(id),
 	foreign key(product_id) references Product(id),
-	primayr key(user_id, product_id)
 )engine=innodb default charset utf8;
 ```
 

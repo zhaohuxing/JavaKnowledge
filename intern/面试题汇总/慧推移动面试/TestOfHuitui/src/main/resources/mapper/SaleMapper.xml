@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sprint.models.dao.SaleDao">
+	<select id="findAll" resultType="com.sprint.models.domain.Sale">
+        select * from Sale 
+    </select>	
+
+	<insert id="insertSale" >
+		insert into Sale (user_id, product_id, sale_date, sale_price, sale_number)values(#{userId}, #{productId}, #{saleDate}, #{salePrice}, #{saleNumber})
+	</insert>
+</mapper>
+
