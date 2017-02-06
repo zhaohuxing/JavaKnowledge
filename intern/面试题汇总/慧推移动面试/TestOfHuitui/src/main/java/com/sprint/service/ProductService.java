@@ -16,7 +16,9 @@ public class ProductService {
 	@Autowired
 	private ProductDao productDao;
 
-
+	public List<Product> findAll() {
+		return productDao.findAll();
+	}
 	public List<Product> getAllByExcel(String file) {
 		List<Product> list = new ArrayList<Product>();
 		try {

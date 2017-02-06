@@ -1,10 +1,11 @@
 package com.sprint.service;
-
+import java.text.*;
 import java.util.*;
 import java.io.*;
 
 import jxl.Workbook;
 import jxl.Sheet;
+import jxl.*;
 import com.sprint.models.domain.Sale;
 import com.sprint.models.dao.SaleDao;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class SaleService {
 	@Autowired
 	private SaleDao saleDao;
 
+	public List<Sale> findAll() {
+		return saleDao.findAll();
+	}
 	public List<Sale> getAllByExcel(String file) {
 		List<Sale> list = new ArrayList<Sale>();
 		try {
@@ -26,7 +30,17 @@ public class SaleService {
 			System.out.println("cols: " + cols + "rows: " + rows);
 			for (int i = 1; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
-					String sDate = rt.getCell(j++, i).getContents(); 
+					Cell cell = rt.getCell(j++, i);
+					Date sd;
+					String sDate = null; 
+					if (cell.getType() == CellType.DATE) {
+						DateCell dc = (DateCell)cell;
+						sd = dc.getDate();
+						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+						sDate = format.format(sd);
+					} else {
+						continue;
+					}
 					String userId= rt.getCell(j++, i).getContents();
 					String productId = rt.getCell(j++, i).getContents();
 					String salePrice = rt.getCell(j++, i).getContents();

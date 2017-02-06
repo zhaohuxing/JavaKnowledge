@@ -12,19 +12,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
+@RequestMapping("/user")
 public class UserCtrl {
 	
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/findAll")
+	@RequestMapping("/")
 	public List<User> findAll() {
 		return userService.findAll();	
-	}
-
-	@RequestMapping("/test")
-	public void test() {
-		userService.getAllByExcel("慧推移动-笔试题目-v1.1.xls");
 	}
 
 }

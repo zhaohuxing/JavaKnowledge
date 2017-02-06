@@ -1,10 +1,13 @@
 package com.sprint.service;
-
+import java.text.*;
 import java.util.*;
 import java.io.*;
 
 import jxl.Workbook;
 import jxl.Sheet;
+import jxl.CellType;
+import jxl.Cell;
+import jxl.DateCell;
 
 import com.sprint.models.domain.*;
 import com.sprint.models.dao.*;
@@ -36,9 +39,21 @@ public class UserService {
 					String idStr = rt.getCell(j++, i).getContents(); 
 					String name = rt.getCell(j++, i).getContents();
 					String address = rt.getCell(j++, i).getContents();
-					String birth = rt.getCell(j++, i).getContents();
+					Cell cell = rt.getCell(j++, i);
+					Date birthD;
+					String birth;
+					if (cell.getType() == CellType.DATE) {
+						DateCell dc = (DateCell)cell;
+						birthD = dc.getDate();
+						System.out.println(birthD);
+						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+						birth = format.format(birthD);
+					} else {
+						continue;
+					}
 					String sex = rt.getCell(j++, i).getContents();
 					int id = Integer.parseInt(idStr);
+					System.out.println(birth);
 					userDao.insertUser(new User(id, name, address, birth, sex));
 				}
 			}

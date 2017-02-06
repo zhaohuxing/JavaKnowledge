@@ -52,11 +52,27 @@ public class Sale {
 		return salePrice;
 	}
 
-	public void setSaleNumber(double salePrice) {
+	public void setSaleNumber(double saleNumber) {
 		this.saleNumber = saleNumber;
 	}
 
 	public double getSaleNumber() {
 		return saleNumber;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	} 
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 }
