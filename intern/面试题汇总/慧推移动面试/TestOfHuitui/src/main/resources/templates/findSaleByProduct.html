@@ -53,8 +53,8 @@
             <li><a href="http://127.0.0.1:3000/findSale">Sale</a></li>
             <li><a href="http://v3.bootcss.com/examples/dashboard/#">Help</a></li>
           </ul>
-          <form class="navbar-form navbar-right" action="findSaleByProduct">
-            <input name="productId" type="text" class="form-control" placeholder="Search...">
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
           </form>
         </div>
       </div>
@@ -84,25 +84,25 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-          <h2 class="sub-header">Product</h2>
+          <h2 class="sub-header">Sale</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>type</th>
-                  <th>price</th>
-                  <th>unit</th>
+                  <th>日期</th>
+                  <th>用户</th>
+                  <th>商品</th>
+                  <th>销售价格</th>
+                  <th>数量</th>
                 </tr>
               </thead>
               <tbody>
-              <tr th:each=" product: ${productList}">
-      			<td th:text="${product.id}">id</td>
-      			<td th:text="${product.productName}">name</td>
-      			<td th:text="${product.productType}">type</td>
-      			<td th:text="${product.productPrice}">price</td>
-      			<td th:text="${product.productUnit}">unit</td>
+              <tr th:each=" sale: ${saleList}">
+      			<td th:text="${sale.saleDate}">id</td>
+      			<td th:text="${sale.userId}">id</td>
+      			<td th:text="${sale.productId}">name</td>
+      			<td th:text="${sale.salePrice}">type</td>
+      			<td th:text="${sale.saleNumber}">price</td>
 
     		  </tr> 
 			  </tbody>

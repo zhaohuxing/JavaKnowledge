@@ -7,6 +7,14 @@
         select * from Sale 
     </select>	
 
+	<select id="findSaleByUser" resultType="com.sprint.models.domain.Sale">
+		select * from Sale where user_id = #{userId}
+    </select>	
+
+	<select id="findSaleByProduct" resultType="com.sprint.models.domain.Sale">
+		select * from Sale where product_id = #{productId}
+    </select>	
+
 	<insert id="insertSale" >
 		insert into Sale (user_id, product_id, sale_date, sale_price, sale_number)values(#{userId}, #{productId}, #{saleDate}, #{salePrice}, #{saleNumber})
 	</insert>

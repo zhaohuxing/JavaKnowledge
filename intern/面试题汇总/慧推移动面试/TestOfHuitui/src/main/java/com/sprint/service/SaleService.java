@@ -19,6 +19,14 @@ public class SaleService {
 	public List<Sale> findAll() {
 		return saleDao.findAll();
 	}
+
+	public List<Sale> findSaleByUser(int userId) {
+		return saleDao.findSaleByUser(userId);
+	} 
+
+	public List<Sale> findSaleByProduct(int productId) {
+		return saleDao.findSaleByProduct(productId);
+	}
 	public List<Sale> getAllByExcel(String file) {
 		List<Sale> list = new ArrayList<Sale>();
 		try {

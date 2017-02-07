@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
-
-@RestController
-@RequestMapping("/user")
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+@Controller
 public class UserCtrl {
 	
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/")
-	public List<User> findAll() {
-		return userService.findAll();	
+	@RequestMapping("/findUser")
+	public String findUser(Model model) {
+		model.addAttribute("userList", userService.findAll());
+		return "main";
 	}
 
 }

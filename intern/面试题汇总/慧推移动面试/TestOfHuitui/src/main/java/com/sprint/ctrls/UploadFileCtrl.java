@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
-@RestController
+import org.springframework.stereotype.Controller;
+@Controller
 public class UploadFileCtrl {
 
 	@Autowired
@@ -34,7 +35,7 @@ public class UploadFileCtrl {
 				userService.getAllByExcel("慧推移动-笔试题目-v1.1.xls");
 				productService.getAllByExcel("慧推移动-笔试题目-v1.1.xls");
 				saleService.getAllByExcel("慧推移动-笔试题目-v1.1.xls");
-                return "You successfully uploaded";  
+                return "redirect:/findUser";  
             } catch (Exception e) {  
                 return "You failed to upload " + e.getMessage();  
             }  
