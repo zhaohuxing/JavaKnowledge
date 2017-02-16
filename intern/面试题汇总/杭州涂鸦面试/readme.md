@@ -15,7 +15,7 @@
 5.说说你熟悉的设计模式吧?<br />
 
 ##考察的知识点
-- JavaSE --- final,finally,finalize
+- JavaSE --- final,finally,finalize ---[解释](http://www.jianshu.com/p/d4a7e2412fbb)
 - Spring --- Spring框架的xml,annotation,javaConfig的搭建,基本的实现原理
 - Jdbc --- Jdbc的优劣（源码）
 - mysql --- 事务，表关联(主外键)
