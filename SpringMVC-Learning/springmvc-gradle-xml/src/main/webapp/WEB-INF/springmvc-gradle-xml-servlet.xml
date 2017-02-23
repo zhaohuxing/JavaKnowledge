@@ -6,17 +6,63 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd  
     http://www.springframework.org/schema/mvc  
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd  
-    ">  
-	<!--<context:component-scan base-package="com.sprint.ctrls" />-->
+    "> 
+	<!--扫描ctrls包--> 
+	<context:component-scan base-package="com.sprint.ctrls" />
 
-	<bean class="com.sprint.ctrls.MainCtrl" />
-	<bean class="com.sprint.ctrls.UserCtrl" />
 	<bean class="com.sprint.service.UserService" />
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<!--配置HandlerMapping-->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<!--设置拦截器链-->
+		<property name="interceptors">
+			<!--拦截器定义的顺序就是拦截器执行的顺序-->
+			<!--
+			此拦截器链的作用:
+			演示preHandle,postHandle,afterComletion正常的执行顺序.
+			<list>
+				<ref bean="handlerInterceptor1" />
+				<ref bean="handlerInterceptor2" />
+			</list>
+			-->
+
+			<!--
+			此拦截器链的作用:
+			演示preHandle,postHandle,afterCompletion异常执行顺序
+			-->
+			<list>
+				<ref bean="handlerInterceptor3" />
+				<ref bean="handlerInterceptor4" />
+			</list>
+			<!--
+			此拦截器链的作用:
+			演示登录拦截
+			<list>
+				<ref bean="stopWatchHandlerInterceptor" />
+				<ref bean="loginHandlerInterceptor" />
+			</list>
+			-->
+		</property>
+	</bean>
+	
+	<!--配置HandlerAdapter-->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />	
+
+	<!--配置ViewResolver-->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+
+	<!--注册HandlerInterceptorBean-->
+	<bean id="handlerInterceptor1" class="com.sprint.interceptor.HandlerInterceptor1" />
+	<bean id="handlerInterceptor2" class="com.sprint.interceptor.HandlerInterceptor2" />
+	<bean id="handlerInterceptor3" class="com.sprint.interceptor.HandlerInterceptor3" />
+	<bean id="handlerInterceptor4" class="com.sprint.interceptor.HandlerInterceptor4" />
+	<bean id="stopWatchHandlerInterceptor" class="com.sprint.interceptor.StopWatchHandlerInterceptor" />
+	<bean id="loginHandlerInterceptor" class="com.sprint.interceptor.LoginHandlerInterceptor">
+		<property name="loginUrl" value="/login"></property>
+	</bean>
+	
 </beans> 
