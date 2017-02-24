@@ -13,35 +13,6 @@
 	<bean class="com.sprint.service.UserService" />
 	<!--配置HandlerMapping-->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-		<!--设置拦截器链-->
-		<property name="interceptors">
-			<!--拦截器定义的顺序就是拦截器执行的顺序-->
-			<!--
-			此拦截器链的作用:
-			演示preHandle,postHandle,afterComletion正常的执行顺序.
-			<list>
-				<ref bean="handlerInterceptor1" />
-				<ref bean="handlerInterceptor2" />
-			</list>
-			-->
-
-			<!--
-			此拦截器链的作用:
-			演示preHandle,postHandle,afterCompletion异常执行顺序
-			-->
-			<list>
-				<ref bean="handlerInterceptor3" />
-				<ref bean="handlerInterceptor4" />
-			</list>
-			<!--
-			此拦截器链的作用:
-			演示登录拦截
-			<list>
-				<ref bean="stopWatchHandlerInterceptor" />
-				<ref bean="loginHandlerInterceptor" />
-			</list>
-			-->
-		</property>
 	</bean>
 	
 	<!--配置HandlerAdapter-->
@@ -64,5 +35,4 @@
 	<bean id="loginHandlerInterceptor" class="com.sprint.interceptor.LoginHandlerInterceptor">
 		<property name="loginUrl" value="/login"></property>
 	</bean>
-	
 </beans> 

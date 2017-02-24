@@ -34,4 +34,32 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<filter>
+		<filter-name>MyFilter1</filter-name>
+		<filter-class>com.sprint.filter.MyFilter1</filter-class>
+		<init-param>
+			<param-name>pname</param-name>
+			<param-value>pValue</param-value>
+			
+		</init-param>
+		<init-param>
+			<param-name>xxx</param-name>
+			<param-value>ssss</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>MyFilter1</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>MyFilter2</filter-name>
+		<filter-class>com.sprint.filter.MyFilter2</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MyFilter2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app> 
