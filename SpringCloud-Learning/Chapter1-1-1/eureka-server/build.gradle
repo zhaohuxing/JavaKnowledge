@@ -11,8 +11,7 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'spring-boot'
-
+apply plugin: 'org.springframework.boot' //以前（1.4.1）spring-boot 如今：org.springframework.boot
 jar {
 	baseName = 'eureka-server'
 	version = '0.1.0'
