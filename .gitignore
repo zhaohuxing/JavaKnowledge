@@ -11,6 +11,13 @@ JavaSE/NestedClassDemo/build
 JavaSE/SelectorDemoClient/build
 JavaSE/SelectorDemoServer/build
 JavaSE/enum/build
+JavaSE/collection/build
+JavaSE/generic/build
+SpringCloud-Learning/Chapter1-1-1/eureka-server/build
+intern/面试题汇总/慧推移动面试/TestOfHuitui/build
+SpringMVC-Learning/springmvc-gradle-xml/build
+JavaSE/NThread/build
+JavaSE/BasicDataStructure/build
 Data-Structure/list/.gradle
 Data-Structure/tree/.gradle
 JavaSE/TCPClient/.gradle
@@ -24,5 +31,12 @@ JavaSE/NestedClassDemo/.gradle
 JavaSE/SelectorDemoClient/.gradle
 JavaSE/SelectorDemoServer/.gradle
 JavaSE/enum/.gradle
+JavaSE/collection/.gradle
+JavaSE/generic/.gradle
+SpringCloud-Learning/Chapter1-1-1/eureka-server/.gradle
+intern/面试题汇总/慧推移动面试/TestOfHuitui/.gradle
+SpringMVC-Learning/springmvc-gradle-xml/.gradle
+JavaSE/NThread/.gradle
+JavaSE/BasicDataStructure/.gradle
 *.swp
 
