@@ -1,0 +1,14 @@
+apply plugin:'java'
+apply plugin:'war'
+
+repositories {
+	mavenCentral()
+}
+dependencies {
+	compile group: 'javax', name: 'javaee-api', version: '7.0'
+	compile group: 'org.springframework', name: 'spring-context', version: '4.3.6.RELEASE'	
+	compile 'org.springframework:spring-core:4.3.6.RELEASE'
+	compile 'org.springframework:spring-webmvc:4.3.6.RELEASE'
+	compile fileTree(dir: './src/main/webapp/WEB-INF/lib', include: '*.jar')
+}
+

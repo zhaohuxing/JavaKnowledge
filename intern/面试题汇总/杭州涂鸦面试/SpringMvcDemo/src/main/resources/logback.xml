@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>  
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <logger name="test.LogbackTest" level="TRACE"/>
+  
+  <logger name="com.alibaba.controller.TestController" level="TRACE"/>
+  
+  <logger name="org.springframework.web.servlet.DispatcherServlet" level="DEBUG" />
+  <logger name="druid.sql" level="INFO" /><!-- 如果spring-config里面没有配置slf4j,就不会显示sql日志，logback只是slf4j的一个实现 -->
+  <root level="debug">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>

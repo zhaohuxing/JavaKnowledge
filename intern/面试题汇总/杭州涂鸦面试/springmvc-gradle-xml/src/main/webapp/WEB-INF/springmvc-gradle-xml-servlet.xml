@@ -11,6 +11,7 @@
 
 	<bean class="com.sprint.ctrls.MainCtrl" />
 	<bean class="com.sprint.ctrls.UserCtrl" />
+	<bean class="com.sprint.service.UserService" />
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
