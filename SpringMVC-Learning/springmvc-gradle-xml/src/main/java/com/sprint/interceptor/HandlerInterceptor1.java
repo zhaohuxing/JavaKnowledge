@@ -8,7 +8,7 @@ public class HandlerInterceptor1 extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("======preHandle1==============");
+		System.out.println("======preHandle1");
 		return true;
 	}
 
@@ -19,6 +19,6 @@ public class HandlerInterceptor1 extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		System.out.println("========afterCompletion");
+		System.out.println("========afterCompletion1");
 	}
 } 
