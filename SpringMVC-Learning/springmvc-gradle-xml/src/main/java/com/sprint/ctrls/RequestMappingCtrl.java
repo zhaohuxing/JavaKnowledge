@@ -164,4 +164,12 @@ public class RequestMappingCtrl {
 	public String headersMethod() {
 		return "headerArgs is exist";
 	}
+
+	/**
+	 *	@RequestMapping中参数总结:
+	 *	1.values	限制映射uri
+	 *	2.method 	限制请求方法
+	 *	3.params 	限制请求参数
+	 *	4.headers	限制请求头
+	 */
 }
