@@ -6,5 +6,5 @@ springmvc配置文件里往往只关系controller产生的beans, 其余的让spr
 
 2017.02.20 --- (SpringMCV工作原理及框架搭建)[http://www.jianshu.com/p/ee59f42c18ec]
 2017.02.24 --- (SpringMVC拦截器及Servlet的Filter)[http://www.jianshu.com/p/a1216dee7051]
-2017.02.27 --- SpringMVC请求限定
+2017.02.27 --- (SpringMVC请求映射规则)[http://www.jianshu.com/p/9bb0e5afd089]
 
