@@ -6,9 +6,14 @@ repositories {
 
 dependencies {
 	compile 'org.springframework:spring-core:4.3.6.RELEASE'
+	compile 'org.springframework:spring-beans:4.3.6.RELEASE'
 	compile 'org.springframework:spring-webmvc:4.3.6.RELEASE'	
+	compile 'org.springframework:spring-web:4.3.6.RELEASE'
 	compile 'javax.servlet:jstl:1.2'
 	compile 'javax:javaee-api:7.0'
+	compile 'org.codehaus.jackson:jackson-core-asl:1.8.4'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+	compile 'com.alibaba:fastjson:1.2.2'
 //	compile 'org.apache.tomcat:tomcat-catalina:9.0.0.M15'
 }
 

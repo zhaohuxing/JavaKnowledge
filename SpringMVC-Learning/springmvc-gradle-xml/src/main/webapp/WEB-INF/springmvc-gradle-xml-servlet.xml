@@ -16,7 +16,14 @@
 	</bean>
 	
 	<!--配置HandlerAdapter-->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+				<ref bean="stringHttpMessageConverter" />
+		</property>				
+	</bean>	
+
+	<bean id="stringHttpMessageConverter" 
+					class="org.springframework.http.converter.StringHttpMessageConverter" />
 
 	<!--配置ViewResolver-->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
