@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="bean1" name="bean1" class="com.sprint.helloword.HelloImp" />
+	<bean id="bean2" class="com.sprint.bean.HelloImp2" />
+	<bean id="bean22" class="com.sprint.bean.HelloImp2">
+		<!-- creat bean by Constructor and index:args of position ,value:argsValue-->
+		<constructor-arg index="0" value="Hello Spring!" />
+	</bean>
+
+	<bean id="bean3" class="com.sprint.bean.HelloApiStaticFactory" factory-method="newInstance">
+		<constructor-arg index="0" value="Hello Spring!" />
+	</bean>
+
+	<bean id="beanInstanceFactory" class="com.sprint.bean.HelloApiFactory" />
+	<bean id="bean4" factory-bean="beanInstanceFactory" factory-method="newInstance">
+		<constructor-arg index="0" value="Hello CXJ" />
+	</bean>
+
+	<!-- different args type di-->
+
+	<!-- set bean args by index -->
+	<bean id="bean5" class="com.sprint.bean.HelloImp3">
+		<constructor-arg index="0" value="CXJ you know ?" />
+		<constructor-arg index="1" value="18" />
+	</bean>
+
+	<!-- set bean args by type-->
+	<bean id="bean55" class="com.sprint.bean.HelloImp3">
+		<constructor-arg type="java.lang.String" value="remember CXJ" />
+		<constructor-arg type="int" value="19" />
+	</bean>
+
+	<!-- set bean args by name-->
+	<bean id="bean555" class="com.sprint.bean.HelloImp3">
+		<constructor-arg name="message" value="JI Nan" />
+		<constructor-arg name="index" value="20" />
+	</bean>
+
+	<!-- create a bean with args by static constructor-->
+	<bean id="bean6" class="com.sprint.bean.DependencyInjectByStaticFactory" factory-method="newInstance">
+		<constructor-arg index="0" value="你好"/>
+		<constructor-arg index="1" value="19" />	
+	</bean>
+
+	<bean id="bean66" class="com.sprint.bean.DependencyInjectByStaticFactory" factory-method="newInstance">
+		<constructor-arg type="java.lang.String" value="忘了"/>
+		<constructor-arg type="int" value="119" />	
+	</bean>
+
+	<bean id="bean666" class="com.sprint.bean.DependencyInjectByStaticFactory" factory-method="newInstance">
+		<constructor-arg name="message" value="河沙"/>
+		<constructor-arg name="index" value="120" />	
+	</bean>
+
+	<!-- create a bean with args by constructor-->
+	<bean id="diFactory" class="com.sprint.bean.DependencyInjectByFactory" />
+	<bean id="bean7" factory-bean="diFactory" factory-method="newInstance">
+		<constructor-arg index="0" value="我最傻" />
+		<constructor-arg index="1" value="250" />
+	</bean>
+	<bean id="bean77" factory-bean="diFactory" factory-method="newInstance">
+		<constructor-arg type="java.lang.String" value="聪明是你吗？" />
+		<constructor-arg type="int" value="100" />
+	</bean>
+
+	<bean id="bean777" factory-bean="diFactory" factory-method="newInstance">
+		<constructor-arg name="message" value="师傅" />
+		<constructor-arg name="index" value="999" />
+	</bean>
+
+
+	<!-- create a bean with args by setMethod-->
+	<bean id="bean8" class="com.sprint.bean.HelloImp4">
+		<property name="message" value="余浮时" />
+		<property name="index">
+			<value>1</value>
+		</property>
+	</bean>
+
+	<!-- test boolean bean have many methods-->
+	<bean id="bean9" class="com.sprint.bean.BooleanTestBean">
+		<property name="success" value="on" />
+	</bean>
+	<bean id="bean99" class="com.sprint.bean.BooleanTestBean">
+		<property name="success" value="yes" />
+	</bean>
+	<bean id="bean999" class="com.sprint.bean.BooleanTestBean">
+		<property name="success" value="1" />
+	</bean>
+
+	<!-- DI List-->
+	<bean id="listBean" class="com.sprint.bean.ListTestBean">
+		<property name="values">
+			<list>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="setBean" class="com.sprint.bean.CollectionTestBean">
+		<property name="values">
+			<set>
+				<value>1</value>
+				<value>1</value>
+				<value>1</value>
+			</set>
+		</property>
+	</bean>
+
+	<bean id="arrayBean" class="com.sprint.bean.ArrayTestBean">
+		<property name="array1">
+			<array value-type="java.lang.String" merge="default">
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
+			</array>
+		</property>
+
+		<property name="array2">
+			<array>
+				<array>
+					<value>1</value>
+				</array>
+				<array>
+					<value>8</value>
+				</array>
+				
+			</array>
+		</property>
+	</bean>
+</beans>
