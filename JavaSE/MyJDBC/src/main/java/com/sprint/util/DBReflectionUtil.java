@@ -19,16 +19,39 @@ import java.util.Set;
  */
 public class DBReflectionUtil {
 
+	private static <T> boolean isEnabled(String tableName, T object) {
+		if (tableName.trim().equals("") || tableName == null || object == null)
+			return false;
+		return true;
+	}
+
+	private static <T> boolean isEnabled(String tableName, T object, Map<String, Object> map, String operator1) {
+		if (!isEnabled(tableName, object))
+			return false;
+		if (map.size() == 0 || operator1.trim().equals("") || operator1 == null)
+			return false;
+		return true;
+	}
+
+	private static <T> boolean isEnabled(String tableName, T object, Map<String, Object> map, String operator1, String operator2) {
+		if (!isEnabled(tableName, object, map, operator1))
+			return false;
+		if (operator2.trim().equals("") || operator2 == null)
+			return false;
+		return true;
+	}
 	/**
 	 * 通过key获取单条记录, key值要求唯一, 例如：身份证号，唯一的
 	 * @param tableName 
 	 * @param object 实体类,仅实例化
-	 * @param key 数据库表中的字段，栗子：select * from where id = 1, key代表id
-	 * @param value 数据库表中字段的值
+	 * @param map 数据库中字段与值
+	 * @param operator1 "=" or "like"
 	 * @return 
 	 */
-	public static <T> T findOnlyByKey(String tableName, T object, String key, Object value) {
-		List<T> list = findMoreByKey(tableName, object, key, value);
+	public static <T> T findOnlyByKey(String tableName, T object, Map<String, Object> map, String operator1) {
+		if (!isEnabled(tableName, object, map, operator1))
+			throw new IllegalArgumentException("参数不合法"); 
+		List<T> list = findMoreByKey(tableName, object, map, operator1);
 		if (list.size() != 0) {
 			return list.get(0);
 		}
@@ -39,34 +62,51 @@ public class DBReflectionUtil {
 	 * 通过key获取多条记录，key值可重复，例如：性别
 	 * @param tableName
 	 * @param object 实体类，仅实例化
-	 * @param key 数据库表中字段， 栗子：selec * from where id = 1, key代表id
-	 * @param value 数据库表中字段的值
+	 * @param map 数据库中 字段 与 值
+	 * @param operator1 "=" or "like"
 	 * @return 
 	 */
-	public static <T> List<T> findMoreByKey(String tableName, T object, String key, Object value) {
-		StringBuffer sb = new StringBuffer(tableName)
-								.append(" where ")
-								.append(key)
-								.append(" = ");
-		if (value.getClass() == String.class) {
-			sb.append("\'")
-			  .append(value)
-			  .append("\'");
-		} else {
-			sb.append(value);
-		}
-
-		return findAll(sb.toString(), object);
+	public static <T> List<T> findMoreByKey(String tableName, T object, Map<String, Object> map, String operator1) {
+		if (!isEnabled(tableName, object, map, operator1))
+			throw new IllegalArgumentException("参数不合法"); 
+		return findMoreByKeys(tableName, object, map, operator1, null); 
 	}
 
-	public static <T> List<T> findMoreByKeys(String tableName, T object, List<String> key) {
-		return null;
+
+	/**
+	 * 通过keys获取多条记录, key值可重复，但key唯一
+	 * @param tableName
+	 * @param object 实体类，仅实例化
+	 * @param map 数据库中字段与值
+	 * @param operator1 "=" or "like"
+	 * @param operator2 "and" or "or"
+	 * @return 
+	 */
+	public static <T> List<T> findMoreByKeys(String tableName, T object, Map<String, Object> map, String operator1, String operator2) {
+		if (!isEnabled(tableName, object, map, operator1, operator2))
+			throw new IllegalArgumentException("参数不合法"); 
+		Set<String> keys = map.keySet();
+		StringBuffer sb = new StringBuffer(tableName).append(" where ");
+		int index = 0;
+		for (String key : keys) {
+				sb.append(key).append(" " + operator1 + " ");
+				if (key.getClass() == String.class) {
+					sb.append("\'")
+					  .append(map.get(key))
+					  .append("\'");
+				}
+				if (index != (keys.size() - 1)) {
+					sb.append(" " + operator2 + " ");
+				}
+				index++;
+		}
+		return findAll(sb.toString(), object);
 	}
 
 	/**
 	 * 通过表名和对象获取所有的数据
 	 * @param tableName 表名
-	 * @param object 对象，仅仅实例化就ok
+	 * @param object 实体类, 仅实例化 
 	 * @return 
 	 */
 	public static <T> List<T> findAll(String tableName, T object) {
