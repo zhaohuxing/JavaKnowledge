@@ -9,6 +9,18 @@ public class Student {
 	private String major;
 	private String clazz;
 
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer("[")
+								.append(id).append(",")
+								.append(name).append(",")
+								.append(age).append(",")
+								.append(sex).append(",")
+								.append(school).append(",")
+								.append(major).append(",")
+								.append(clazz).append("]");
+		return sb.toString();
+	}
 	public Student() {
 	}
 
@@ -44,6 +56,10 @@ public class Student {
 
 	public void setClazz(String clazz) {
 		this.clazz = clazz;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 	public int getId() {

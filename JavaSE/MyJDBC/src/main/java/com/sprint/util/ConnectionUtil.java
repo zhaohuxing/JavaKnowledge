@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class ConnectionUtil {
 	public static Connection getConnection() {
 		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/learnbackbone?useUnicode=true&amp;characterEncoding=UTF-8";
+		String url = "jdbc:mysql://localhost:3306/learnbackbone?characterEncoding=UTF-8";
 		String username = "root";
 		String password = "123456";
 		Connection conn = null;

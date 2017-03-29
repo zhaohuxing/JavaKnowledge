@@ -18,12 +18,43 @@ import java.util.Set;
  * @author x_zhaohu		17/03/28
  */
 public class DBReflectionUtil {
-	
+
+	public static <T> T findOnlyByKey(String tableName, T object, String key, Object value) {
+		List<T> list = findMoreByKey(tableName, object, key, value);
+		if (list.size() != 0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
+	public static <T> List<T> findMoreByKey(String tableName, T object, String key, Object value) {
+		StringBuffer sb = new StringBuffer(tableName)
+								.append(" where ")
+								.append(key)
+								.append(" = ");
+		if (value.getClass() == String.class) {
+			sb.append("\'")
+			  .append(value)
+			  .append("\'");
+		} else {
+			sb.append(value);
+		}
+
+		return findAll(sb.toString(), object);
+	}
+
+
+	/**
+	 * 通过表名和对象获取所有的数据
+	 * @param tableName 表名
+	 * @param object 对象，仅仅实例化就ok
+	 * @return 
+	 */
 	public static <T> List<T> findAll(String tableName, T object) {
 		List<T> list = new ArrayList<T>();
 		Map<String, Class> paramsType = getParamsType(object);
 		Set<String> keys = paramsType.keySet();
-		StringBuilder sb = new StringBuilder("select * from").append(tableName);
+		StringBuilder sb = new StringBuilder("select * from ").append(tableName);
 		Connection conn = ConnectionUtil.getConnection();
 		PreparedStatement pstmt;
 		String sql = sb.toString();
@@ -75,12 +106,13 @@ public class DBReflectionUtil {
 		return null;
 	}
 	
-	/** 
-	 * @param tableName 
-	 * @param object 
+	/**
+	 * 通过表名和对象进行插入操作
+	 * @param tableName 表名 
+	 * @param object 实例化并带有数据的对象
 	 * @return
 	 */
-	public static boolean insert(String tableName, Object object) {
+	public static <T> boolean insert(String tableName, T object) {
 		Map<String, Class> paramsType = getParamsType(object);
 		Set<String> keys = paramsType.keySet();
 		List<String> params = new ArrayList<String>();
@@ -159,11 +191,12 @@ public class DBReflectionUtil {
 		return false;
 	}
 	
-	/**
+	/** 
+	 * 通过对象获取该类的信息
 	 * @param object
 	 * @return
 	 */
-	private static Map<String, Class> getParamsType(Object object) {
+	private static <T> Map<String, Class> getParamsType(T object) {
 		Class<?> clz = object.getClass();
 		Field[] fields = clz.getDeclaredFields();
 		Map<String, Class> paramsType = new HashMap<String,  Class>(); 
@@ -174,6 +207,7 @@ public class DBReflectionUtil {
 	} 
 	
 	/**
+	 * 通过class, 方法名前缀和字段获取该方法
 	 * @param clz
 	 * @param startWithName
 	 * @param param
@@ -194,6 +228,7 @@ public class DBReflectionUtil {
 	}
 	
 	/**
+	 * 通过class,前缀获取方法列表
 	 * @param clz
 	 * @param startWithName
 	 * @return
