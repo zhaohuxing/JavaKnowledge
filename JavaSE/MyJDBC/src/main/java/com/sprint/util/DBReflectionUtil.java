@@ -19,6 +19,14 @@ import java.util.Set;
  */
 public class DBReflectionUtil {
 
+	/**
+	 * 通过key获取单条记录, key值要求唯一, 例如：身份证号，唯一的
+	 * @param tableName 
+	 * @param object 实体类,仅实例化
+	 * @param key 数据库表中的字段，栗子：select * from where id = 1, key代表id
+	 * @param value 数据库表中字段的值
+	 * @return 
+	 */
 	public static <T> T findOnlyByKey(String tableName, T object, String key, Object value) {
 		List<T> list = findMoreByKey(tableName, object, key, value);
 		if (list.size() != 0) {
@@ -27,6 +35,14 @@ public class DBReflectionUtil {
 		return null;
 	}
 
+	/**
+	 * 通过key获取多条记录，key值可重复，例如：性别
+	 * @param tableName
+	 * @param object 实体类，仅实例化
+	 * @param key 数据库表中字段， 栗子：selec * from where id = 1, key代表id
+	 * @param value 数据库表中字段的值
+	 * @return 
+	 */
 	public static <T> List<T> findMoreByKey(String tableName, T object, String key, Object value) {
 		StringBuffer sb = new StringBuffer(tableName)
 								.append(" where ")
@@ -43,6 +59,9 @@ public class DBReflectionUtil {
 		return findAll(sb.toString(), object);
 	}
 
+	public static <T> List<T> findMoreByKeys(String tableName, T object, List<String> key) {
+		return null;
+	}
 
 	/**
 	 * 通过表名和对象获取所有的数据
