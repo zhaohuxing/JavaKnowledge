@@ -73,6 +73,17 @@ public class DBReflectionUtil {
 	}
 
 
+	public static <T> T findOnlyByKeys(String tableName, T object,
+						Map<String, Object> map, String operator1, String operator2) {
+		if (!isEnabled(tableName, object, map, operator1))
+			throw new IllegalArgumentException("参数不合法"); 
+		List<T> list = findMoreByKeys(tableName, object, map, operator1, operator2);
+		if (list.size() != 0) {
+			return list.get(0);
+		}
+		return null;
+		
+	}
 	/**
 	 * 通过keys获取多条记录, key值可重复，但key唯一
 	 * @param tableName
@@ -83,7 +94,7 @@ public class DBReflectionUtil {
 	 * @return 
 	 */
 	public static <T> List<T> findMoreByKeys(String tableName, T object, Map<String, Object> map, String operator1, String operator2) {
-		if (!isEnabled(tableName, object, map, operator1, operator2))
+		if (!isEnabled(tableName, object, map, operator1))
 			throw new IllegalArgumentException("参数不合法"); 
 		Set<String> keys = map.keySet();
 		StringBuffer sb = new StringBuffer(tableName).append(" where ");
@@ -181,19 +192,27 @@ public class DBReflectionUtil {
 	
 		int count = 0;
 		int capacity = keys.size();
+		
+		boolean isExistAutoId = false;
 		for (String key : keys) {
 			if (key.equals("id")) {
 				count++;
 				capacity--;
+				isExistAutoId = true;
 				continue;
 			}
 			sb.append(key);
 			params.add(key);
-			if (count != (capacity))
-				sb.append(",");
-			
+			if (!isExistAutoId) {
+				if (count != (capacity - 1))
+					sb.append(",");
+			} else {
+				if (count != capacity)
+					sb.append(",");
+			}
 			count++;
 		}
+
 		sb.append(")values(");
 		for (int i = 0; i < capacity; i++) {
 			sb.append("?");
