@@ -51,7 +51,6 @@ create table students (
 #### 添加数据: ` public static boolean insert(String tableName, T object)`
 
 
-向数据库中添加student操作：
 
 |参数名|参数名描述|
 |---------|---------------|

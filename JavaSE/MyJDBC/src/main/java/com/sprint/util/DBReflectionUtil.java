@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -225,14 +226,13 @@ public class DBReflectionUtil {
 	 * @param tableName 
 	 * @param object 实体类,仅实例化
 	 * @param map 数据库中字段与值
-	 * @param operator1 "=" or "like"
 	 * @return 
 	 */
 	public static <T> T findOnlyByKey(String tableName, T object,
-							Map<String, Object> map, String operator1) {
+							Map<String, Object> map) {
 		if (!isEnabled(tableName, object, map, operator1))
 			throw new IllegalArgumentException("参数不合法"); 
-		T t = findOnlyByKeys(tableName, object, map, operator1, null);
+		T t = findOnlyByKeys(tableName, object, map, "=", null);
 		if (t != null) { //flag
 			return t;
 		}
@@ -333,9 +333,6 @@ public class DBReflectionUtil {
 					} else if (paramsType.get(key) == boolean.class) {
 						Method m = getMethod(object.getClass(), "set", key);
 						m.invoke(obj, rs.getBoolean(key));
-					} else if (paramsType.get(key) == Date.class) {
-						Method m = getMethod(object.getClass(), "set", key);
-						m.invoke(obj, rs.getBoolean(key));
 					}
 				}	
 				list.add(((T)obj));
@@ -434,9 +431,6 @@ public class DBReflectionUtil {
 				} else if (paramsType.get(key) == boolean.class) {
 					Method m = getMethod(object.getClass(), "get", key);
 					pstmt.setBoolean(i, (Boolean)m.invoke(object));
-				} else if (paramsType.get(key) == Date.class) {
-					Method m = getMethod(object.getClass(), "get", key);
-					pstmt.setBoolean(i, (Date)m.invoke(object));
 				}
 			}
 			pstmt.executeUpdate();
@@ -454,7 +448,7 @@ public class DBReflectionUtil {
 		}
 		return false;
 	}
-	
+
 	/** 
 	 * 通过对象获取该类的信息
 	 * @param object
