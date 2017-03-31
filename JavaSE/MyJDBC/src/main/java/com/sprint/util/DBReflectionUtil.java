@@ -39,6 +39,21 @@ public class DBReflectionUtil {
 	 * @param tableName
 	 * @param object 实体类
 	 * @param map 数据库中字段与值 
+	 */
+	private static <T> boolean isEnabled(String tableName, T object,
+												Map<String, Object> map) {
+		if (!isEnabled(tableName, object))
+			return false;
+		if (map.size() == 0)
+			return false;
+		return true;
+	}
+	
+	/**
+	 * 检查数据是否合法
+	 * @param tableName
+	 * @param object 实体类
+	 * @param map 数据库中字段与值 
 	 * @param operator1 "=" or "like"
 	 */
 	private static <T> boolean isEnabled(String tableName, T object,
@@ -230,7 +245,7 @@ public class DBReflectionUtil {
 	 */
 	public static <T> T findOnlyByKey(String tableName, T object,
 							Map<String, Object> map) {
-		if (!isEnabled(tableName, object, map, operator1))
+		if (!isEnabled(tableName, object, map))
 			throw new IllegalArgumentException("参数不合法"); 
 		T t = findOnlyByKeys(tableName, object, map, "=", null);
 		if (t != null) { //flag
@@ -308,6 +323,7 @@ public class DBReflectionUtil {
 		Connection conn = ConnectionUtil.getConnection();
 		PreparedStatement pstmt;
 		String sql = sb.toString();
+		System.out.println(sql);
 		int capacity = paramsType.size();
 		try {
 			pstmt = conn.prepareStatement(sql);
