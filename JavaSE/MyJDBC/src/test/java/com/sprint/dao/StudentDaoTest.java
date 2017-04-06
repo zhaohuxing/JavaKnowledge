@@ -9,103 +9,63 @@ import org.junit.Test;
 public class StudentDaoTest {
 
 	StudentDao sd = new StudentDao();
-/*		
-	
-	@Test //success 
+
+	//存储
+	@Test
 	public void testInsert() {
-		Student stu = new Student(2, "姓名2", 12, "男", "CodeUniversity", "软件工程", "1403");
+		Student stu = new Student(1, "姓名", 18, "性别", "学校","专业", "班级");
 		sd.insert(stu);
-		for (int i = 0; i < 5; i++) {
-			Student stu1 = new Student(i, "轮子" + i, 12, "男", "中国鲁东大学", "软件工程", "1403");
-			sd.insert(stu1);
-		}
-	
 	}
 
-	@Test //success
-	public void testDeleteLikeNameAndSchool() {
-		sd.deleteLikeNameAndSchool("name%", "Code%");	
+	//获取全部学生
+	@Test
+	public void testFindAll() {
+		List<Student> list = sd.findAll();
+		for (Student stu : list) 
+			System.out.println(stu);
+	}
+
+	//多条件获取多条记录
+	@Test
+	public void testFindMoreByKeys() {
+		List<Student> list = sd.findMoreBySexAndSchool("男", "世纪鲁东大学");
+		for (Student stu : list) 
+			System.out.println(stu);
+				
+	}
+
+	//多条件获取单条记录
+	@Test
+	public void testFindOnlyByKeys() {
+		Student stu = sd.findOnlyByNameAndSchool("姓名2", "烟台大学");
+		System.out.println(stu);
 	} 
 
-	@Test //success
-	public void testDeleteMoreBySchool() {
-		sd.deleteMoreBySchool("鲁东大学");
-	}
-
-	@Test //success 
-	public void testDeleteByName() {
-		sd.deleteByName("姓名1");	
-	}
-
-	@Test //success 
-	public void updateAgeAndSchool() {
-		sd.updateAgeAndSchool(1000, "世纪鲁东大学");
-	}
+	//单条件获取多条记录
 	@Test
-	public void updatePartAgeAndSchool() {
-		System.out.println(sd.updatePartAgeAndSchool(18, "鲁东大学", 65, "姓名3"));
+	public void testFindMoreByKey() {
+		
+		List<Student> list = sd.findMoreBySchool("世纪鲁东大学");
+		for (Student stu : list) 
+			System.out.println(stu);
 	}
-*/
+
+	//单条件获取单条记录
 	@Test
-	public void updatePartAgeAndSchoolById() {
-		System.out.println(sd.updatePartAgeAndSchoolById(120, "烟台大学", 65));
+	public void testFindOnlyByKey() {
+		Student stu = sd.findOnlyById(73);
+		System.out.println(stu);
 	}
 
-/*	@Test
-	public void testDeteleLikeNameAndSchool() {
-		sd.deleteMoreLikeNameAndSchool("test%", "Code%");	
-	}
-	
-*/
-
-	/*@Test
-	public void testInsertStudent() {
-		Student stu = new Student(2, "test1", 12, "男", "CodeUniversity", "ruanjian", "1403");
-		Student stu1 = new Student(2, "test2", 12, "男", "CodeUniversity", "ruanjian", "1403");
-		Assert.assertTrue(sd.insertStudent(stu));
-		Assert.assertTrue(sd.insertStudent(stu1));
-	}*/
-	
-	/*@Test
-	public void testDelete() {
-		sd.deleteStudent(12, "男");
-	}*/
-	
-/*	@Test public void testNameAndSchool() {
-		List<Student> list = sd.findLikeNameAndSchool("%stu%", "Code%");
-		for (Student stu : list) {
-	//		System.out.println(stu);
-		}
-
-	}
-	@Test public void testList() {
-		List<Student> list = sd.findMoreByKeys("女", "CodeUniversity");
-		for (Student stu : list) {
-	//		System.out.println(stu);
-		}
-	}
+	//单条件删除单条
 	@Test
-	public void test() {
-		int[] array = {1, 2, 3, 4, 5, 6};
-		for (int a : array) {
-			if (a == 4)
-				continue;
-	//		System.out.println(a);
-		}
+	public void testDeleteByKey() {
+		sd.deleteByName("轮子2");
 	}
 
-	@Test 
-	public void testFindStu() {
-
-		Student stu = sd.findById(8);
-		if (stu != null) {
-	//		System.out.println(stu);
-		} else {
-	//		System.out.println("空");
-		}
-		List<Student> list = sd.findBySex("女");
-		for (Student s : list) {
-	//		System.out.println(s);
-		}
-	}*/
+	//多条件删除多条
+	@Test
+	public void testDeleteByKeys() {
+		sd.deleteLikeNameAndSchool("姓%", "%学%");
+	}
 }

@@ -1,5 +1,7 @@
+只需用ConnectionUtil.java和DBReflectionUtil.java搞定简单并且多属性，数据量大的数据库CURD。
+这两个类所在的位置：/src/main/java/com/sprint/util/
 ## 约束条件
-- 目前仅支持int,float,long,double,boolean,String数据类型
+- 目前仅支持int,float,long,double,String数据类型
 - 目前仅支持 "=", "like", "and", "or"操作
 - 实体类中的字段与表中字段一一对应
 - 实体类中需存在无参构造函数以及getter&setter方法
@@ -48,7 +50,7 @@ create table students (
 ```
 一般需要再封装一层dao，看个人编程规范吧。这里直接使用DBReflectionUtil类操作
 
-#### 添加数据: ` public static boolean insert(String tableName, T object)`
+#### 添加数据: ` public static int insert(String tableName, T object)`
 
 
 
@@ -62,7 +64,7 @@ Student stu = new Student("name", 18, "male", "CodeUniversity", "SoftWare", "cla
 DBReflectionUtil.insert("students", stu)) 	
 ```
 
-#### 清空所有记录：`public static boolean deleteAll(String tableName)`
+#### 清空所有记录：`public static int deleteAll(String tableName)`
 
 |参数名|参数名描述|
 |---------|---------------|
@@ -72,7 +74,7 @@ DBReflectionUtil.insert("students", stu))
 DBReflectionUtil.deleteAll("students");
 ```
 
-#### 单条件删除记录：`public static boolean deleteByKeys(String tableName, Map<String, Object>map, String operator1)`
+#### 单条件删除记录：`public static int deleteByKey(String tableName, Map<String, Object>map, String operator1)`
 
 |参数名|参数名描述|
 |---------|---------------|
@@ -87,7 +89,7 @@ map.put("name", "邢%");
 DBReflectionUtil.deleteByKeys("students", map, "like");
 ```
 
-#### 多条件删除记录：`public static boolean deleteByKeys(String tableName, Map<String, Object>map, String operator1, String operator2)`
+#### 多条件删除记录：`public static int deleteByKeys(String tableName, Map<String, Object>map, String operator1, String operator2)`
 
 
 |参数名|参数名描述|
@@ -105,7 +107,7 @@ map.put("age", 18);
 DBReflectionUtil.deleteByKeys("students", map, "=", "and");
 ```
 
-#### 无条件更新：`public static boolean updateAll(String tableName, Map<String, Object> map)`
+#### 无条件更新：`public static int updateAll(String tableName, Map<String, Object> map)`
 
 |参数名|参数名描述|
 |---------|---------------|
@@ -120,7 +122,7 @@ map.put("major", "水下工作者");
 DBReflectionUtil.updateAll("students", map);
 ```
 
-#### 单条件更新：`public static boolean updateByKeys(String tableName, Map<String, Object> updateMap, Map<String, Object> optionMap, String operator1)`
+#### 单条件更新：`public static int updateByKey(String tableName, Map<String, Object> updateMap, Map<String, Object> optionMap, String operator1)`
 |参数名|参数名描述|
 |---------|---------------|
 |tableName|表名|
@@ -137,7 +139,7 @@ map.put("name", "骆%");
 DBReflectionUtil.updateByKeys("students", updateMap, optionMap, "like");
 ```
 
-#### 多条件更新：`public static boolean updateByKeys(String tableName, Map<String, Object> updateMap, Map<String, Object> optionMap, String operator1, String operator2)`
+#### 多条件更新：`public static int updateByKeys(String tableName, Map<String, Object> updateMap, Map<String, Object> optionMap, String operator1, String operator2)`
 
 |参数名|参数名描述|
 |---------|---------------|
@@ -185,7 +187,7 @@ Map<String, Object> map = new HashMap<String, Object>();
 map.put("id", 2);
 Student stu = DBReflectionUtil.findOnlyByKey("students", new Student(),map);
 ```
-#### 单条件查询多条：`pulic static <T> List<T> findMoreByKeys(String tableName, T object, , Map<String, Object> map, String operator1)`
+#### 单条件查询多条：`pulic static <T> List<T> findMoreByKey(String tableName, T object, , Map<String, Object> map, String operator1)`
 
 |参数名|参数名描述|
 |---------|---------------|
@@ -198,7 +200,7 @@ Student stu = DBReflectionUtil.findOnlyByKey("students", new Student(),map);
 //例如：查找name中含"骆"的学生
 Map<String, Object> map = new HashMap<String, Object>();
 map.put("name", "骆%");
-List<Student> list = DBReflectionUtil.findOnlyByKey("students", new Student(), map, "like");
+List<Student> list = DBReflectionUtil.findMoreByKey("students", new Student(), map, "like");
 ```
 
 #### 多条件查询多条记录：`public static <T> List<T> findMoreByKeys(String tableName, T object, Map<String, Object> map, String operator1, String operator2)`
@@ -216,10 +218,10 @@ List<Student> list = DBReflectionUtil.findOnlyByKey("students", new Student(), m
 Map<String, Object> map = new HashMap<String, Object>();
 map.put("name", "骆%");
 map.put("sex", "中国%");
-Student stu = DBReflectionUtil.findOnlyByKey("students", new Student(), map, "like", "and");
+List<Student> list = DBReflectionUtil.findMoreByKeys("students", new Student(), map, "like", "and");
 ```
 
-#### 多条件查询单条记录：`public static <T> List<T> findMoreByKeys(String tableName, T object, Map<String, Object> map, String operator1, String operator2)`
+#### 多条件查询单条记录：`public static <T> T findOnlyByKeys(String tableName, T object, Map<String, Object> map, String operator1, String operator2)`
 
 |参数名|参数名描述|
 |---------|---------------|
@@ -234,7 +236,7 @@ Student stu = DBReflectionUtil.findOnlyByKey("students", new Student(), map, "li
 Map<String, Object> map = new HashMap<String, Object>();
 map.put("sex", "男");
 map.put("id", 4);
-Student stu = DBReflectionUtil.findOnlyByKey("students", new Student(), map, "=", "and");
+Student stu = DBReflectionUtil.findOnlyByKeys("students", new Student(), map, "=", "and");
 ```
 
 
