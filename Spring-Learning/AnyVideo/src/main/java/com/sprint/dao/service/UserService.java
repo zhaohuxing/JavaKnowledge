@@ -29,7 +29,7 @@ public class UserService {
 	public boolean signUp(User user) {
 		String email = user.getEmail();
 		if (existEmail(email)) {
-			log.error("用户注册, 邮箱已注册：" + email);
+			log.info("用户注册, 邮箱已注册：" + email);
 			return false;
 		}
 		sendValidateEmail(user);
@@ -56,7 +56,7 @@ public class UserService {
 	@Async
 	private void sendValidateEmail(User user) {
 		String token = tokenManager.getTokenOfSignUp(user);	
-		log.error("用户注册, 准备发送邮件：User:" + JSONObject.toJSONString(user) + ", Token: " + token);
+		log.info("用户注册, 准备发送邮件：User:" + JSONObject.toJSONString(user) + ", Token: " + token);
 		mailService.userValidate(user, token);
 	}
 	private boolean existEmail(String email) {
