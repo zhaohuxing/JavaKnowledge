@@ -37,14 +37,14 @@ public class UserController {
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String user(Model model) {
-/*		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
 			String email = ((UserDetails)principal).getUsername();
 			User user = userService.getByEmail(email);
 			model.addAttribute("user", user);
 			List<Category> categories = categoryService.getByUserId(user.getId());
 			model.addAttribute("categories", categories);
-		}*/
+		}
 		return "user";
 	}
 }

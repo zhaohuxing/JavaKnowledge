@@ -8,6 +8,6 @@ import java.util.List;
 @Mapper
 public interface CategoryMapper {
 
-	@Select("select * from category where userId = #{userId}")
+	@Select("select * from category where user_id = #{userId}")
 	List<Category> selectByUserId(@Param("userId") Long userId); 
 }
