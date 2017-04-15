@@ -8,6 +8,7 @@
 开发环境：ubuntu<br />
 1. 修改hosts，`127.0.0.1 itudou.site` <br />
 2. 利用nginx反向代理到http://localhost:3000<br />
+3. 访问: `itudou.site`
 
 
 # 注册登录
@@ -48,9 +49,12 @@ $.post('/url', data)
 - mail
 - redis
 
-采用spring-security进行安全设置(保护路径)，类似拦截器．
+采用spring-security进行安全设置(保护路径)，类似拦截器．总结[文章](http://www.jianshu.com/p/719ca436a5b6)<br />
 
 注册除了进行数据库操作外，还通过邮箱进行验证,核心类：JavaMailSender(负责邮件的创建和发送), MimeMessage(纸), MimeMessageHelper(邮件各信息). 通过UUID和字符拼接生成token作为key, 将user的json作为value.存入到redis。用户需要在12小时内点击注册链接，完成注册。
+使用javamail
+使用redis
+
 <br />
 登录通过spring-security框架进行安全设置。(让其访问指定的路径)，类型拦截器。
 

@@ -22,12 +22,15 @@ public class RedisTokenManager {
 	public String getTokenOfSignUp(User user) {
 		String token = UUID.randomUUID().toString();
 		String value = JSONObject.toJSONString(user);
+		// 设置Key-Value存入redis
 		stringRedisTemplate.opsForValue().set(signUpPrefix + token, value);
+		//设置Key的生存周期
 		stringRedisTemplate.expire(signUpPrefix + token, 12, TimeUnit.HOURS);
 		return token;
 	} 
 
 	public User getUserOfSignUp(String token) {
+		//通过key获取redis中的value
 		String value = stringRedisTemplate.opsForValue().get(signUpPrefix + token);
 		if (value == null) {
 			log.info("用户注册, Token已失效：" + token);
