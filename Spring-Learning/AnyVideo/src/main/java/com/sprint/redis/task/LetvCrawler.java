@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
 
 /**
  * 乐视信息爬虫
- * Created by Silence on 2017/2/12.
  */
 @Component
 @Log4j

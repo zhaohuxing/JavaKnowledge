@@ -1,0 +1,27 @@
+<div th:fragment="movie">
+	<div class="row">
+		<div class="bs-callout bs-callout-danger">
+			<h4 style="display: inline-block">电影</h4>
+			<button type="button" class="btn btn-danger pull-right refresh" value="12">
+				<span class="glyphicon glyphicon-refresh"></span>换一批
+			</button>
+		</div>
+	</div>
+
+	<div class="row videoBox">
+		<div class="col-md-2 col-sm-4 col-xs-6 videoItem" th:each="movie, iterStat:${movies}">
+			<a th:href="@{/play(v=${movie.value})}" th:if="${iterStat.index} < 12" class="videoUrl">
+				<img th:src="${movie.image}" class="img-responsive img-thumbnail videoImage">
+				<div class="caption">
+					<p class="text-left videoTitle" th:text="${movie.title}"></p>
+				</div>
+			</a>
+
+			<div th:if="${iterStat.index} >= 12" hidden>
+				<ul class="videoImage">[[${movie.image}]]</ul>
+				<ul class="videoTitle">[[${movie.title}]]</div>
+				<a th:href="@{/play(v=${movie.value})}" class="videoUrl"></a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -18,10 +18,16 @@ public class IndexController {
 	@RequestMapping(value="/", method = RequestMethod.GET) 
 	public String redis(Model model) {
 		List<VideoDTO> carouselPics = redisSourceManager.getVideosByKeyAndTag(redisSourceManager.VIDEO_PREFIX_HOME_CAROUSEL_KEY, TAGS[0]);
-		for (VideoDTO v : carouselPics) {
-			System.out.println(v.getImage());
-		}
+		List<VideoDTO> recommends = redisSourceManager.getVideosByKeyAndTag(redisSourceManager.VIDEO_PREFIX_HOME_RECOMMEND_KEY, TAGS[0]);
+		List<VideoDTO> tvHots = redisSourceManager.getVideosByKeyAndTag(redisSourceManager.VIDEO_PREFIX_HOME_TV_KEY, TAGS[0]);
+		List<VideoDTO> tvTops = redisSourceManager.getVideosByKeyAndTag(redisSourceManager.VIDEO_PREFIX_HOME_TV_HOT_KEY, TAGS[0]);	
+		List<VideoDTO> movies = redisSourceManager.getVideosByKeyAndTag(redisSourceManager.VIDEO_PREFIX_HOME_MOVIE_KEY, TAGS[0]);
 		model.addAttribute("carouselPics", carouselPics);
+		model.addAttribute("recommends", recommends);
+		model.addAttribute("tvHots", tvHots);
+		model.addAttribute("tvTops", tvTops);
+		model.addAttribute("movies", movies);
+		model.addAttribute("navIndex", 0);
 		return "home";
 	}
 	@RequestMapping(value="/login", method = RequestMethod.GET)

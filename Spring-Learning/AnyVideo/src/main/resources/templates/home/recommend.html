@@ -1,0 +1,25 @@
+<div th:fragment="recommend">
+	<div class="row">
+		<div class="bs-callout bs-callout-danger">
+			<h4 style="display: inline-block">精选推荐</h4>
+			<button type="button" class="btn btn-danger pull-right refresh" value="6">
+				<span class="glyphicon glyphicon-refresh"></span>换一批
+			</button>
+		</div>
+	</div>
+	<div class="row videoBox">
+		<div class="col-md-2 col-sm-4 col-xs-6 videoItem" th:each="recommend, iterStat:${recommends}">
+			<a th:href="@{/play(v=${recommend.value})}" th:if="${iterStat.index} < 6" class="videoUrl">
+				<img th:src="${recommend.image}" alt="" class="img-responsive img-thumbnail videoImage" />
+				<div class="caption">
+					<p class="text-left videoTitle" th:text="${recommend.title}"></p>
+				</div>
+			</a>
+			<div th:if="${iterStat.index} >= 6" hidden>
+				<ul class="videoImage">[[${recommend.image}]]</ul>
+				<ul class="videoTitle">[[${recommend.title}]]<ul>
+				<a th:href="@{/play(v=${recommend.value})}" class="videoUrl"></a>
+			</div>
+		</div>
+	</div>
+</div>
