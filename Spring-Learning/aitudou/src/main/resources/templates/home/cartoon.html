@@ -1,0 +1,42 @@
+<div th:fragment="cartoon">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<div class="bs-callout bs-callout-danger">
+					<h4 style="display: inline-block">动漫</h4>
+					<button type="button" class="btn btn-danger pull-right refresh" value="8">
+						<span class="glyphicon glyphicon-refresh"></span>换一批
+					</button>
+				</div>
+			</div>
+
+			<div class="row videoBox">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="row">
+						<div class="col-md-3 col-sm-6 col-xs-6 videoItem" th:each="animeHot, iterStat:${animeHots}">
+							<a th:href="@{/play(v=${animeHot.value})}" th:if="${iterStat.index} < 8" class="videoUrl">
+								<img th:src="${animeHot.image}" class="img-responsive img-thumbnail videoImage" />
+								<div class="caption">
+									<p class="text-left videoTitle" th:text="${animeHot.title}"></p>
+								</div>
+							</a>
+							<div th:if="${iterStat.index} >= 8" hidden>
+								<ul class="videoImage">[[${animeHot.image}]]</ul>
+								<ul class="videoTitle">[[${animeHot.title}]]</ul>
+								<a th:href="@{/play(v=${animeHot.value})}" class="videoUrl"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 hidden-sm hidden-xs">
+			<div class="top">
+				<h3><span class="glyphicon glyphicon-play-circle"></span>腾讯动漫</h3>
+			</div>
+			<div class="list-group" style="padding-top:5px;">
+				<a th:each="animeNew:${animeNews}" th:href="@{/play(v=${animeNew.value})}" class="list-group-item" th:text="${animeNew.title}"></a>
+			</div>
+		</div>
+	</div>	
+</div>

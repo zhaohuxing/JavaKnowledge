@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>爱土豆-全球领先的在线视频网站-海量正版高清视频在线观看</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/carousel.css" />
+		<link rel="stylesheet" href="css/docs.min.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body style="background-color: #f1f1f1; padding-bottom: 0"> 
+		<div th:insert="~{header :: nav}" />	
+		<div th:insert="~{/home/carousel :: carousel}" />
+		<div class="container" style="padding-top: 0">
+			<div th:insert="~{/home/recommend :: recommend}" />
+			<div th:insert="~{/home/tv :: tv}" />
+			<div th:insert="~{/home/movie :: movie}" />
+			<div th:insert="~{/home/cartoon :: cartoon}" />			
+		</div>		
+		<div th:insert="~{/home/footer :: footer}" />
+		<script type="text/javascript">
+			//换一换/*
+			$(".refresh").click(function() {
+				var size = $(this).val();
+				for (var i = 0; i < size; i++) {
+					console.log("size: " + size);
+					var videoBox = $(this).parent().parent().next().find(".videoItem");
+					var imageValue = videoBox.eq(i).find(".videoImage").eq(0).attr("src");
+					var titleValue = videoBox.eq(i).find(".videoTitle").eq(0).text();
+					console.log(titleValue);
+					var urlValue = videoBox.eq(i).find(".videoUrl").eq(0).attr("href");
+					var node = videoBox.eq(size);
+					var image = node.find(".videoImage").eq(0).text();
+					var title = node.find(".videoTitle").eq(0).text();
+					var url = node.find(".videoUrl").eq(0).attr("href");
+					videoBox.eq(i).find(".videoImage").eq(0).attr("src", image);
+					videoBox.eq(i).find(".videoTitle").eq(0).text(title);
+					videoBox.eq(i).find(".videoUrl").eq(0).attr("href", url);
+					node.remove();
+					var divBox = $("<div class=\"videoItem\"></div>");
+					var hiddenNode = $("<div hidden></div>");
+					var imageNode = $("<ul class=\"videoImage\"></ul>");
+					var titleNode = $("<ul class=\"videoTitle\"></ul>");
+					var urlNode = $("<a href='' class=\"videoUrl\"></a>");
+					imageNode.text(imageValue);
+					titleNode.text(titleValue);
+					urlNode.attr("href", urlValue);
+					hiddenNode.append(imageNode);
+					hiddenNode.append(titleNode);
+					hiddenNode.append(urlNode);
+					divBox.append(hiddenNode);
+					$(this).parent().parent().next().append(divBox);
+					console.log("执行完毕");
+				}
+			})
+	
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'aitudou'
+	version = '0.1.0'
+}
+
+repositories {
+	mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	//web
+	compile("org.springframework.boot:spring-boot-starter-web")
+	//thymeleaf
+	compile("org.thymeleaf:thymeleaf:3.0.1.RELEASE")
+	compile("org.thymeleaf:thymeleaf-spring4:3.0.1.RELEASE")
+	compile("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.0.3")
+	//security
+	compile("org.springframework.boot:spring-boot-starter-security")
+	//mail
+	compile("org.springframework.boot:spring-boot-starter-mail")
+	//redis
+	compile("org.springframework.boot:spring-boot-starter-data-redis")
+	//mybatis
+	compile("com.zaxxer:HikariCP:2.5.1")
+	compile("mysql:mysql-connector-java:5.1.38")
+	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
+	//jsoup
+	compile("org.jsoup:jsoup:1.9.2")
+	//download ?
+	compile("commons-lang:commons-lang:2.6")
+	//json
+	compile("com.alibaba:fastjson:1.2.17")
+	compile("org.projectlombok:lombok:1.16.14")
+	//热部署
+	compile("org.springframework.boot:spring-boot-devtools")
+	//单元测试
+	testCompile("junit:junit")	
+}
