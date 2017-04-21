@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+		<bean id="straightValues" class="com.sprint.bean.details.StraightValues">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql://localhost:3306/mydb" />
+			<property name="username">
+				<value>xxx</value>
+			</property>
+			<property name="password" value="masterkaoli" />
+		</bean>
+
+		<!-- idref -->
+		<bean id="theTargetBean" class="java.lang.String">
+			<constructor-arg index="0" value="refValue" />
+		</bean>
+		<bean id="idref" class="com.sprint.bean.details.Idref">
+			<!-- 这里targetName = "theTargetBean, 注入是常量, 不是引用"-->
+			<property name="targetName"><idref bean="theTargetBean" /></property>
+		</bean>
+
+		<!-- ref -->
+		<bean id="ref" class="com.sprint.bean.details.Ref">
+			<property name="ref">
+				<ref bean="theTargetBean" />
+			</property>
+		</bean>
+
+		<!-- inner bean -->
+		<bean id="inner" class="com.sprint.bean.details.OutBean">
+			<property name="inner">
+				<bean class="com.sprint.bean.details.InnerBean">
+					<constructor-arg index="0" value="xingzhaohu" />
+					<constructor-arg index="1" value="21" />
+				</bean>
+			</property>
+		</bean>
+
+		<!-- Collections -->
+		<bean id="collections" class="com.sprint.bean.details.Collections">
+			<property name="adminEmails">
+				<props>
+					<prop key="administrator">administrator@example.org</prop>
+					<prop key="support">support@example.org</prop>
+					<prop key="development">development@example.org</prop>
+				</props>
+			</property>
+
+			<property name="someList">
+				<list>
+					<value>a list elment followed by a reference</value>
+					<ref bean="straightValues" />
+				</list>
+			</property>
+
+			<property name="someMap">
+				<map>
+					<entry key="an entry" value="just some string" />
+					<entry key="a ref" value="straightValues" />
+				</map>
+			</property>
+
+			<property name="someSet">
+				<set>
+					<value>just some String</value>
+					<ref bean="straightValues" />
+				</set>
+			</property>
+		</bean>
+
+		<!-- Collection Merging-->
+		<bean id="collectionMerging" abstract="true" class="com.sprint.bean.details.CollectionMerging">
+			<property name="someList">
+				<list>
+					<value>1</value>
+					<value>2</value>
+				</list>
+			</property>
+		</bean>
+		<bean id="subCollectionMerging" parent="collectionMerging">
+			<property name="someList">
+				<list merge="true">
+					<value>3</value>
+					<value>1</value>
+				</list>
+			</property>
+		</bean>
+
+		<!--strongly type collection -->
+		<bean id="strongCollection" class="com.sprint.bean.details.StronglyTypeCollection">
+			<property name="accounts">
+				<map>
+					<entry key="one" value="9.99" />
+					<entry key="two" value="2.75" />
+					<entry key="six" value="3.99" />
+				</map>
+			</property>
+		</bean>
+</beans>
